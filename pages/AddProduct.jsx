@@ -1,17 +1,16 @@
 import AppLayout from '../src/components/Layout/AppLayout';
-import { CardBar } from '../src/components/Inventory/CardBar';
+import AddProductForm from '../src/components/AddProduct/AddProductForm';
 
-
-function Home() {
+function AddProduct() {
   return (
     <>
       <AppLayout>
         <div className='main-box'>
-          <CardBar></CardBar>
+          <AddProductForm></AddProductForm>
         </div>
       </AppLayout>
     </>
   );
 }
 
-export default Home;
+export default AddProduct;

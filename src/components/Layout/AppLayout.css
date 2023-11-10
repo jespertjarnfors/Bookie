@@ -1,0 +1,8 @@
+.left-header {
+    display: flex;
+    justify-content: space-around;
+}
+
+.main-content {
+ margin: 20px;
+}

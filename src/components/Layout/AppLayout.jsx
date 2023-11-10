@@ -23,6 +23,19 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ChatIcon from "@mui/icons-material/Chat";
+import './AppLayout.css'
+
+
+// Navigation items, including their path to be iterated over later in the Drawer.
+
+const navigationItems = [
+  {label: "Home", path: "/Home"},
+  {label: "Add Product", path: "/Add-product"},
+  {label: "Account", path: "/Account"},
+  {label: "Contact Us", path: "/Contact-us"}
+]
+
+// MUI-component Code starts here
 
 const drawerWidth = 240;
 
@@ -52,7 +65,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
@@ -91,11 +103,17 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function LeftNav() {
+// And ends here.
+
+
+export default function AppLayout({ children }) {
+
+  // MUI-Component functionality still, used to toggle hidden items.
   const theme = useTheme();
   const [open, setOpen] = useState(true);
 
   const { values } = useContext(UserContext);
+  // Importing the UserContext.
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -104,8 +122,10 @@ export default function LeftNav() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  
 
   return (
+    <>
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
@@ -183,11 +203,58 @@ export default function LeftNav() {
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader
-        style={{backgroundColor: '#4C67FF',}}>
+        style={{
+            backgroundColor: '#4C67FF',
+            display: 'flex',
+            justifyContent: 'space-between'
+            }}>
+              <span style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon icon-tabler icon-tabler-brand-booking"
+          width="44"
+          height="44"
+          viewBox="0 0 24 24"
+          strokeWidth="1.5"
+          stroke="#ffffff"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{
+            ...(!open && { 
+              display: "none",
+           })
+          }}
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M4 18v-9.5a4.5 4.5 0 0 1 4.5 -4.5h7a4.5 4.5 0 0 1 4.5 4.5v7a4.5 4.5 0 0 1 -4.5 4.5h-9.5a2 2 0 0 1 -2 -2z" />
+          <path d="M8 12h3.5a2 2 0 1 1 0 4h-3.5v-7a1 1 0 0 1 1 -1h1.5a2 2 0 1 1 0 4h-1.5" />
+          <path d="M16 16l.01 0" />
+        </svg>
+        <Typography
+              variant="h5"
+              noWrap
+              component="div"
+              style={{
+                fontFamily: "Poppins",
+                color: "white",
+                fontWeight: "500",
+                ...(!open && { 
+                  display: "none",
+               })
+              }}>Bookie</Typography>
+        </span>
+    
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon
               sx={{
+                color: "white",
                 ...(!open && { display: "none" })
               }} />
             ) : (
@@ -201,45 +268,47 @@ export default function LeftNav() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Inventory", "Add Post", "Account", "Contact"].map(
-            (text, index) => (
-              <ListItem key={text} disablePadding sx={{ display: "block" }}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
+            {navigationItems.map((item) => (
+              <Link to={item.path} key={item.label} style={{ textDecoration: "none" }}>
+                <ListItem disablePadding sx={{ display: "block" }}>
+                  <ListItemButton
                     sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                      color:"#4C67FF"
+                      minHeight: 48,
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
                     }}
                   >
-                    {index === 0 ? (
-                      <DashboardIcon />
-                    ) : index === 1 ? (
-                      <PostAddIcon />
-                    ) : index === 2 ? (
-                      <AccountBoxIcon />
-                    ) : (
-                      <ChatIcon />
-                    )}
-                  </ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0}} />
-                </ListItemButton>
-              </ListItem>
-            )
-          )}
-        </List>
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                        color: "#4C67FF",
+                      }}
+                    >
+                      {item.label === "Home" ? (
+                        <DashboardIcon />
+                      ) : item.label === "Add Product" ? (
+                        <PostAddIcon />
+                      ) : item.label === "Account" ? (
+                        <AccountBoxIcon />
+                      ) : (
+                        <ChatIcon />
+                      )}
+                    </ListItemIcon>
+                    <ListItemText primary={item.label} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            ))}
+          </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }} className="main-content">
+           {/* Main Content Goes Here */}
+           {children}
         <DrawerHeader />
-        <Typography paragraph>{/* Your content */}</Typography>
       </Box>
     </Box>
+    </>
   );
 }
