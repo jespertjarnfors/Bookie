@@ -1,5 +1,6 @@
 import AppLayout from '../src/components/Layout/AppLayout';
-import { CardBar } from '../src/components/Inventory/CardBar';
+import { CardBar } from '../src/components/Home/CardBar';
+import ProductList from '../src/components/Home/ProductList';
 
 
 function Home() {
@@ -8,6 +9,7 @@ function Home() {
       <AppLayout>
         <div className='main-box'>
           <CardBar></CardBar>
+          <ProductList></ProductList>
         </div>
       </AppLayout>
     </>

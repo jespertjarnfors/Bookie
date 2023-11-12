@@ -37,6 +37,8 @@ const navigationItems = [
 
 // MUI-component Code starts here
 
+
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -103,6 +105,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
+
 // And ends here.
 
 
@@ -112,9 +115,6 @@ export default function AppLayout({ children }) {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
 
-  const { values } = useContext(UserContext);
-  // Importing the UserContext.
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -123,6 +123,10 @@ export default function AppLayout({ children }) {
     setOpen(false);
   };
   
+  // End of MUI-component functionality.
+
+  const { values } = useContext(UserContext);
+  // Importing the UserContext.
 
   return (
     <>
@@ -132,7 +136,7 @@ export default function AppLayout({ children }) {
         position="fixed"
         open={open}
         style={{
-          backgroundColor: "inherit",
+          backgroundColor: "white",
           boxShadow: "0px 5px 5px -5px rgba(0,0,0,0.25)", // Box-shadow effect
           outlineOffset: "50px",
         }}

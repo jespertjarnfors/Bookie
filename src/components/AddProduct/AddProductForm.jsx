@@ -2,8 +2,8 @@ import { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import Box from "@mui/material/Box";
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -12,7 +12,7 @@ import { useProduct } from '../../hooks/useProduct';
 
 const AddProductForm = () => {
   // Defining state variables for form fields
-  const [productTitle, setProductTitle] = useState(''); // New field for Product Title
+  const [productTitle, setProductTitle] = useState(''); 
   const [productImage, setProductImage] = useState(null);
   const [category, setCategory] = useState('');
   const [price, setPrice] = useState('');
@@ -41,19 +41,19 @@ const AddProductForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Generating a unique ID for the product
+    // Generating a unique ID for the added product
     const id = Date.now();
 
-    // Create a product object with the form data and generated id, also converting quantity and price to integers.
+    // Create a product object with the form data and generated id, also converting quantity and price to integers
     const newProduct = {
-        id,
-        productTitle,
-        productImage,
-        category,
-        price: parseInt(price), // Ensure price is a number
-        quantity: parseInt(quantity), // Ensure quantity is a number
-        description,
-      };      
+      id,
+      productTitle,
+      productImage,
+      category,
+      price: parseInt(price), // Ensure price is a number
+      quantity: parseInt(quantity), // Ensure quantity is a number
+      description,
+    };
 
     // Using dispatch to add the product to the productContext
     dispatch({ type: 'ADD_PRODUCT', payload: newProduct });
@@ -62,7 +62,7 @@ const AddProductForm = () => {
     setOpenDialog(true);
 
     // Resetting the form fields and image preview
-    setProductTitle(''); 
+    setProductTitle('');
     setProductImage(null);
     setCategory('');
     setPrice('');
@@ -89,7 +89,7 @@ const AddProductForm = () => {
               label="Product Image"
               onChange={handleImageChange}
             />
-               <TextField
+            <TextField
               label="Product Title"
               variant="outlined"
               fullWidth
@@ -145,7 +145,7 @@ const AddProductForm = () => {
           Your product has been added successfully!
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpenDialog(false)} color="primary">
+          <Button onClick={() => setOpenDialog(false)} style={{ backgroundColor: "4C67FF" }}>
             Close
           </Button>
         </DialogActions>
