@@ -8,7 +8,7 @@ function AccountView() {
   return (
     <div style={{ marginTop: '2.1rem' }}>
 
-      <Grid container spacing={3}>
+      <Grid container spacing={3} sx={{ borderRadius: '20px', padding: '20px', width: "450px", margin: "auto" }}>
         <Grid item xs={12}>
           <Paper elevation={3} style={{ borderRadius: '20px', padding: '20px' }}>
             <Avatar

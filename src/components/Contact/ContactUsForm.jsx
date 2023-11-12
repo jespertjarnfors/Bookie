@@ -40,7 +40,7 @@ const ContactUsForm = () => {
     <div style={{ marginTop: '2.1rem' }}>
 
 
-      <Paper elevation={3} sx={{ borderRadius: '20px', padding: '20px' }}>
+      <Paper elevation={3} sx={{ borderRadius: '20px', padding: '20px', width: "450px", margin: "auto" }}>
       <Typography variant="h6" align="left" gutterBottom style={{ color: '#525252' }}>
         Contact Us
       </Typography>
