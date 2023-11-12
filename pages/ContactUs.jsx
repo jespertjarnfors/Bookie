@@ -1,3 +1,4 @@
+import ContactUsForm from '../src/components/Contact/ContactUsForm';
 import AppLayout from '../src/components/Layout/AppLayout';
 
 function ContactUs() {
@@ -5,6 +6,7 @@ function ContactUs() {
     <>
       <AppLayout>
         <div className='main-box'>
+          <ContactUsForm></ContactUsForm>
         </div>
       </AppLayout>
     </>

@@ -3,7 +3,7 @@ import './TitleBar.css'
 export function TitleBar () {
 
     return (
-    <span className="title-bar">
+    <span className="title-bar" style={{marginTop: "auto"}}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="icon icon-tabler icon-tabler-brand-booking"

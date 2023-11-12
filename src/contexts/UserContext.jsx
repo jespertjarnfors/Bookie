@@ -6,7 +6,8 @@ const UserContextProvider = (props) => {
 
     const [ values, setValues ] = useState({
         username: '',
-        password: ''
+        password: '',
+        email: ''
       })
     
       const handleChange = (e) => {

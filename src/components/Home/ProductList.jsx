@@ -10,27 +10,14 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
-import SaveIcon from "@mui/icons-material/Save";
+import CheckIcon from "@mui/icons-material/Check";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { styled } from "@mui/system";
-
+import CancelIcon from "@mui/icons-material/Cancel"; // Import CancelIcon
 
 const ProductList = () => {
-  // Removing the focus outline from the Save and Delete buttons.
-  const StyledIconButton = styled(IconButton)({
-    "&:focus": {
-      outline: "none",
-    },
-  });
-
-  // Using the ProductContext through the custom hook.
   const { state, dispatch } = useContext(ProductContext);
-
-  // State to manage the editing status and the product being edited
   const [editableProduct, setEditableProduct] = useState(null);
-
-  // State to hold the edited values
   const [editedValues, setEditedValues] = useState({
     productTitle: "",
     category: "",
@@ -39,37 +26,23 @@ const ProductList = () => {
   });
 
   const handleEdit = (product) => {
-    console.log("Editing product:", product);
-    // Set the editable product
     setEditableProduct(() => {
-      // Set the edited values to the current product values
       setEditedValues({
         productTitle: product.productTitle,
         category: product.category,
         price: product.price,
         quantity: product.quantity,
       });
-  
-      return product; // Return the updated value
+      return product;
     });
   };
-  
 
   const handleUpdate = () => {
-
-    console.log("editedValues:", editedValues);
-    console.log("editableProduct:", editableProduct);
-  
-    // If the quantity is updated to 0, increment the out of stock count
     const isQuantityZero =
       editedValues.quantity === "0" || parseInt(editedValues.quantity) === 0;
     const outOfStockIncrement =
       isQuantityZero && editableProduct && editableProduct.quantity > 0 ? 1 : 0;
 
-      console.log("isQuantityZero:", isQuantityZero);
-      console.log("outOfStockIncrement:", outOfStockIncrement);
-  
-    // Dispatch the update action to the product reducer with the edited values
     dispatch({
       type: "UPDATE_PRODUCT",
       payload: {
@@ -79,10 +52,9 @@ const ProductList = () => {
         price: editedValues.price,
         quantity: editedValues.quantity,
       },
-      outOfStockIncrement, // Include the out of stock count increment
+      outOfStockIncrement,
     });
-  
-    // Reset the editable product and edited values
+
     setEditableProduct(null);
     setEditedValues({
       productTitle: "",
@@ -91,23 +63,18 @@ const ProductList = () => {
       quantity: "",
     });
   };
-   
-  // Function to handle deleting a product
+
   const handleDelete = (productId) => {
-    // Dispatching the delete action to the product reducer
     dispatch({ type: "DELETE_PRODUCT", payload: productId });
   };
 
-  // Function to handle field changes during editing
   const handleFieldChange = (field, value) => {
-    // Update the edited values state
     setEditedValues((prevValues) => ({
       ...prevValues,
       [field]: value,
     }));
   };
 
-  // Function to prevent event propagation to avoid closing the editing state
   const stopPropagation = (e) => {
     e.stopPropagation();
   };
@@ -136,13 +103,18 @@ const ProductList = () => {
                 <TableCell>Price</TableCell>
                 <TableCell>Quantity</TableCell>
                 <TableCell>Edit</TableCell>
-                <TableCell>Delete</TableCell>{" "}
-                {/* New column for delete button */}
+                <TableCell>Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {state.products.map((product) => (
-                <TableRow key={product.id}>
+                <TableRow
+                  key={product.id}
+                  sx={{
+                    backgroundColor:
+                      editableProduct === product ? "#D6DCFF" : "inherit",
+                  }}
+                >
                   <TableCell>
                     {product.productImage && (
                       <img
@@ -160,6 +132,9 @@ const ProductList = () => {
                           handleFieldChange("productTitle", e.target.value)
                         }
                         onClick={stopPropagation}
+                        InputProps={{
+                          style: { background: "#ffffff" },
+                        }}
                       />
                     ) : (
                       product.productTitle
@@ -173,6 +148,9 @@ const ProductList = () => {
                           handleFieldChange("category", e.target.value)
                         }
                         onClick={stopPropagation}
+                        InputProps={{
+                          style: { background: "#ffffff" },
+                        }}
                       />
                     ) : (
                       product.category
@@ -186,6 +164,9 @@ const ProductList = () => {
                           handleFieldChange("price", e.target.value)
                         }
                         onClick={stopPropagation}
+                        InputProps={{
+                          style: { background: "#ffffff" },
+                        }}
                       />
                     ) : (
                       `$${product.price}`
@@ -199,6 +180,9 @@ const ProductList = () => {
                           handleFieldChange("quantity", e.target.value)
                         }
                         onClick={stopPropagation}
+                        InputProps={{
+                          style: { background: "#ffffff" },
+                        }}
                       />
                     ) : (
                       product.quantity
@@ -206,31 +190,45 @@ const ProductList = () => {
                   </TableCell>
                   <TableCell>
                     {editableProduct === product ? (
-                      <StyledIconButton
-                        aria-label="save"
-                        onClick={(e) => {
-                          handleUpdate();
-                          stopPropagation(e);
-                        }}
-                      >
-                        <SaveIcon />
-                      </StyledIconButton>
+                      <div>
+                        <IconButton
+                          aria-label="save"
+                          onClick={(e) => {
+                            handleUpdate();
+                            stopPropagation(e);
+                          }}
+                          sx={{ backgroundColor: "#22C55E" , "&:hover": {} }}
+                        >
+                          <CheckIcon style={{ color: "#ffffff",  }} />
+                        </IconButton>
+                        <IconButton
+                          aria-label="cancel"
+                          onClick={() => setEditableProduct(null)}
+                          sx={{  backgroundColor: "#FF574A", marginLeft: "5px", "&:hover": {} }}
+                        >
+                          <CancelIcon style={{ color: "#ffffff" }} />
+                        </IconButton>
+                      </div>
                     ) : (
-                      <StyledIconButton
+                      <IconButton
                         aria-label="edit"
                         onClick={() => handleEdit(product)}
                       >
                         <EditIcon />
-                      </StyledIconButton>
+                      </IconButton>
                     )}
                   </TableCell>
                   <TableCell>
-                    <StyledIconButton
+                    <IconButton
                       aria-label="delete"
                       onClick={() => handleDelete(product.id)}
+                      style={{
+                        color:
+                          editableProduct === product ? "#ffffff" : undefined,
+                      }}
                     >
                       <DeleteIcon />
-                    </StyledIconButton>
+                    </IconButton>
                   </TableCell>
                 </TableRow>
               ))}

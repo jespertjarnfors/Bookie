@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import { TitleBar } from "../Misc/TitleBar";
 import './Login.css'
+import { CopyRight } from "../Misc/CopyRight";
 
 function Login() {
   const navigate = useNavigate();
@@ -69,6 +70,7 @@ function Login() {
                 name="username"
                 value={values.username}
                 onChange={handleChange}
+                style={{marginBottom: "8px"}}
               />
               <br />
               <TextField
@@ -103,7 +105,9 @@ function Login() {
             </Link>
           </Paper>
         </Grid>
+
       </Grid>
+      <CopyRight></CopyRight>
     </div>
   );
 }

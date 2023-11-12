@@ -1,3 +1,4 @@
+import AccountView from '../src/components/Account/AccountView';
 import AppLayout from '../src/components/Layout/AppLayout';
 
 function Account() {
@@ -5,6 +6,7 @@ function Account() {
     <>
       <AppLayout>
         <div className='main-box'>
+         <AccountView></AccountView>
         </div>
       </AppLayout>
     </>

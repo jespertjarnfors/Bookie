@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import axios from 'axios';
 import { TitleBar } from '../Misc/TitleBar';
 import './Register.css'
+import { CopyRight } from '../Misc/CopyRight';
 
 
 function Register() {
@@ -74,6 +75,17 @@ function Register() {
                 name="username"
                 value={values.username}
                 onChange={handleChange}
+                style={{marginBottom: "8px"}}
+              />
+              <br />
+              <TextField
+                id="outlined-email"
+                label="Email"
+                variant="outlined"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                style={{marginBottom: "8px"}}
               />
               <br />
               <TextField
@@ -110,6 +122,7 @@ function Register() {
         </Grid>
         <Grid item xs={3} />
       </Grid>
+      <CopyRight></CopyRight>
     </div>
   );
 }

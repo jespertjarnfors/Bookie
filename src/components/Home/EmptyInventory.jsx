@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 
 // EmptyInventory component for displaying when the inventory is empty
 export const EmptyInventory = () => (
-    <div style={{ textAlign: "center", marginTop: "2rem" }}>
+    <div style={{ textAlign: "center", marginTop: "auto", marginBottom: "auto" }}>
       <img
         src="src\assets\images\Empty.svg"
         alt="Empty Inventory"

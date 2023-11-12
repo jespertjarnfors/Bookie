@@ -18,6 +18,7 @@ const userDatabase = {
 // Endpoint to register a new user
 app.post('/api/register', (req, res) => {
   const newUser = req.body;
+  console.log('Received registration data:', newUser);
   userDatabase.users.push(newUser);
   res.send('User registered successfully');
 });
@@ -29,7 +30,6 @@ app.post('/api/login', (req, res) => {
   
 
   const userExists = userDatabase.users.find((user) => user.username === username && user.password === password);
-
 
   if (username === '' || password === '') {
     console.log('Received credentials:', username, password); // Debugging to see if the correct data is being passed through.
