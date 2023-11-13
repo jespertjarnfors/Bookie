@@ -1,5 +1,5 @@
 import AppLayout from '../src/components/Layout/AppLayout';
-import { CardBar } from '../src/components/Home/CardBar';
+import { CardBar } from '../src/components/Home/Cards/CardBar';
 import ProductList from '../src/components/Home/ProductList';
 
 

@@ -4,7 +4,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import AppsIcon from "@mui/icons-material/Apps";
 import { Divider } from "@mui/material";
 import { Paid } from "@mui/icons-material";
-import { useProduct } from "../../hooks/useProduct";
+import { useProduct } from "../../../hooks/useProduct";
 
 export function CardBar() {
   const { state } = useProduct();

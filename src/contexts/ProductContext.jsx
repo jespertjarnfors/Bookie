@@ -29,7 +29,8 @@ const productReducer = (state, action) => {
       const updatedTotalProductsAdd = updatedProductsAdd.reduce((total, product) => total + parseInt(product.quantity), 0);
 
       // Only include the value if the product is in stock, and add the price * quantity to the total store value.
-      const updatedTotalStoreValueAdd = updatedProductsAdd.reduce((total, product) => (product.quantity > 0 ? total + (parseInt(product.price) * product.quantity) : total), 0);
+      const updatedTotalStoreValueAdd = updatedProductsAdd.reduce((total, product) =>
+       (product.quantity > 0 ? total + (parseInt(product.price) * product.quantity) : total), 0);
 
       // Checks if the product is out of stock / quantity === 0.
       const updatedOutOfStockAdd = updatedProductsAdd.filter((product) => product.quantity === 0).length;
@@ -37,6 +38,7 @@ const productReducer = (state, action) => {
       // Using the Array.from method on a set with unique values only from categories, and then counts the length of that array.
       const updatedCategoriesAdd = Array.from(new Set(updatedProductsAdd.map((product) => product.category))).length;
 
+      // Updating the state after all the logic has been handled.
       return {
         ...state,
         products: updatedProductsAdd,
@@ -100,7 +102,7 @@ const productReducer = (state, action) => {
   }
 };
 
-// Creating the ProductProvider component.
+// Creating the ProductProvider component that makes use of the reducer.
 const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
 

@@ -4,16 +4,19 @@ export const UserContext = createContext()
 
 const UserContextProvider = (props) => {
 
-    const [ values, setValues ] = useState({
+         // Initialising the state.
+      const [ values, setValues ] = useState({
         username: '',
         password: '',
         email: ''
       })
-    
+ 
+      // Updating the state with the values from the Login/Register-form.
       const handleChange = (e) => {
         setValues({...values, [e.target.name]: e.target.value})
       }
     
+      // Preventing the page from refreshing upon submitting.
       const handleSubmit = (e) => {
         e.preventDefault()
       }

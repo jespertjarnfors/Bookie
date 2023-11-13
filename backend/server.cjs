@@ -15,7 +15,7 @@ const userDatabase = {
   }]
 }
 
-// Endpoint to register a new user
+// Endpoint to register a new user.
 app.post('/api/register', (req, res) => {
   const newUser = req.body;
   console.log('Received registration data:', newUser);
@@ -23,12 +23,13 @@ app.post('/api/register', (req, res) => {
   res.send('User registered successfully');
 });
 
-// Endpoint to authenticate an existing user
+// Endpoint to authenticate an existing user.
 app.post('/api/login', (req, res) => {
 
+  // Destructuring the username and password from the request.
   const { username, password } = req.body;
   
-
+  // Checks if the username AND password match exists in the database.
   const userExists = userDatabase.users.find((user) => user.username === username && user.password === password);
 
   if (username === '' || password === '') {

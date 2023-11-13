@@ -97,9 +97,11 @@ const Drawer = styled(MuiDrawer, {
 // MUI component code ends here.
 
 export default function AppLayout({ children }) {
+
   // MUI-Component functionality still, used to toggle hidden items.
   const theme = useTheme();
-  const [activePage, setActivePage] = useState("Home");
+  const [activePage, setActivePage] = useState("Home");   // State to handle which navigation item should be colored in blue.
+
   const [open, setOpen] = useState(true);
 
   const handleDrawerOpen = () => {
@@ -115,15 +117,16 @@ export default function AppLayout({ children }) {
   // Importing the UserContext.
 
   useEffect(() => {
-    // Get the pathname from the current location
+
+    // Get the pathname from the current location.
     const currentPath = location.pathname;
 
-    // Find the matching navigation item label based on the current route
+    // Find the matching navigation item label based on the current route.
     const matchingNavItem = NavigationItems.find((item) =>
       currentPath.startsWith(item.path)
     );
 
-    // Update the active page based on the matching navigation item
+    // Update the active page based on the matching navigation item.
     if (matchingNavItem) {
       setActivePage(matchingNavItem.label);
     }
@@ -133,6 +136,7 @@ export default function AppLayout({ children }) {
     <>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
+        {/* Top Header/Navbar starts here */}
         <AppBar
           position="fixed"
           open={open}
@@ -206,6 +210,7 @@ export default function AppLayout({ children }) {
             </Link>
           </Toolbar>
         </AppBar>
+        {/* Left-side Navbar begins here */}
         <Drawer variant="permanent" open={open}>
           <DrawerHeader
             style={{
