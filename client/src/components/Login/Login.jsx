@@ -17,7 +17,7 @@ function Login() {
   const loginUser = () => {
     // Using Axios to send a post request to my server in the backend.
     axios
-      .post("http://localhost:5000/api/login", values)
+      .post("https://bookie-app-backend.vercel.app/api/login", values)
       .then((response) => {
         console.log(response.data); // Logging the data.
         navigate("/Home");

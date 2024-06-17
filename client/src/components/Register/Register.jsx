@@ -20,7 +20,7 @@ function Register() {
   const registerUser = async () => {
     try {
       // Send a POST request to your server for registration
-      const response = await axios.post('http://localhost:5000/api/register', values);
+      const response = await axios.post('https://bookie-app-backend.vercel.app/api/register', values);
 
       if (response.status === 200) {
         console.log('Registration successful');
