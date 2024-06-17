@@ -44,6 +44,10 @@ app.post('/api/login', (req, res) => {
   }
 });
 
+app.get('/', (req, res) => {
+  res.send('Hello! The server is up and running.');
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
