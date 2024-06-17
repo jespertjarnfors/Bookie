@@ -3,9 +3,15 @@ const app = express();
 const cors = require('cors');
 const port = 5000;
 
+// Configuring CORS to allow requests from frontend
+const corsOptions = {
+  origin: ['http://localhost:5173',],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+};
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Simple dummy JSON-Database with a test user.
 const userDatabase = {
