@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import { TitleBar } from "../Misc/TitleBar";
-import './Login.css'
+import "./Login.css";
 import { CopyRight } from "../Misc/CopyRight";
 
 function Login() {
@@ -15,9 +15,13 @@ function Login() {
   const { handleChange, handleSubmit, values } = useContext(UserContext);
 
   const loginUser = () => {
-    // Using Axios to send a post request to my server in the backend.
+    // Using Axios to send a post request to the backend server.
     axios
-      .post("https://bookie-app-backend.vercel.app/api/login", values)
+      .post("https://bookie-app-backend.vercel.app/api/login", values, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
       .then((response) => {
         console.log(response.data); // Logging the data.
         navigate("/Home");
@@ -61,7 +65,7 @@ function Login() {
               <path d="M21 12h-13l3 -3" />
               <path d="M11 15l-3 -3" />
             </svg>
-            <h2 className='box-title'>Sign in</h2>
+            <h2 className="box-title">Sign in</h2>
             <form onSubmit={handleSubmit} noValidate>
               <TextField
                 id="outlined-username"
@@ -70,7 +74,7 @@ function Login() {
                 name="username"
                 value={values.username}
                 onChange={handleChange}
-                style={{marginBottom: "8px"}}
+                style={{ marginBottom: "8px" }}
               />
               <br />
               <TextField
@@ -91,7 +95,7 @@ function Login() {
                 variant="contained"
                 onClick={loginUser}
                 style={{
-                  backgroundColor: '#4C67FF'
+                  backgroundColor: "#4C67FF",
                 }}
               >
                 Sign in
@@ -105,7 +109,6 @@ function Login() {
             </Link>
           </Paper>
         </Grid>
-
       </Grid>
       <CopyRight></CopyRight>
     </div>
