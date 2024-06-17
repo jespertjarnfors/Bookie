@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import { TextField, Avatar, Grid, Paper } from '@mui/material';
+import avatar from "../../assets/images/avatar.png";
 
 function AccountView() {
   const { values } = useContext(UserContext);
@@ -13,7 +14,7 @@ function AccountView() {
           <Paper elevation={3} style={{ borderRadius: '20px', padding: '20px' }}>
             <Avatar
               alt="User Avatar"
-              src="src\assets\images\avatar.png"
+              src={avatar}
               sx={{ width: 250, height: 250, margin: 'auto', marginBottom: '16px' }}
             />
             
