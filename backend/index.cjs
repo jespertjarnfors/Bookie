@@ -5,7 +5,7 @@ const port = process.env.PORT || 5000;
 
 // Configuring CORS to allow requests from frontend
 const corsOptions = {
-  origin: ['http://localhost:5173', 'https://bookie-application.vercel.app/'],
+  origin: ['http://localhost:5173', 'https://bookie-application.vercel.app'],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type']
 };
