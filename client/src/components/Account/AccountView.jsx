@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import { TextField, Avatar, Grid, Paper } from '@mui/material';
-import avatar from "../../assets/images/avatar.png";
+import avatar from "../../assets/avatar.png";
 
 function AccountView() {
   const { values } = useContext(UserContext);

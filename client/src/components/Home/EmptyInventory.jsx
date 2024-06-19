@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import emptyImage from "../../assets/images/empty.svg"
+import emptyImage from "../../assets/empty.svg"
 
 // EmptyInventory component for displaying when the inventory is empty
 export const EmptyInventory = () => (
