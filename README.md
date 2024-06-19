@@ -2,6 +2,8 @@
 
 An inventory manager create in React through Vite, with an intuitive UI where you manage your products, view your store value, and inventory. Created with a simulated login-page utilizing state management and contexts, and a backend server using Express.js.
 
+Deployed demo can be found here, feel free to use the credentials provided: https://bookie-application.vercel.app/
+
 ![Bookie Preview](screenshots/Bookie.png)
 
 Full responsiveness was considered out of scope as the project had a short turnaround, however, may be implemented in the future.
